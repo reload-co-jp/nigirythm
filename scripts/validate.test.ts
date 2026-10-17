@@ -24,6 +24,40 @@ describe("content data", () => {
   })
 })
 
+describe("relations", () => {
+  it("rejects relations without evidence or across words", () => {
+    const data = loadData()
+    data.relations.push(
+      {
+        ...data.relations[0],
+        from: "bug-insect",
+        to: "bug-defect",
+        source_ids: [],
+      },
+      { ...data.relations[0], from: "bug-insect", to: "mouse-device" }
+    )
+    const { errors } = validate(data)
+    expect(errors).toContain(
+      "relations/bug-insect→bug-defect: 同じ意味の組の関係が重複しています"
+    )
+    expect(errors).toContain(
+      "relations/bug-insect→bug-defect: 出典が登録されていません"
+    )
+    expect(errors).toContain(
+      "relations/bug-insect→mouse-device: 別々の見出し語の意味を結んでいます"
+    )
+  })
+
+  it("rejects word links to unpublished words", () => {
+    const data = loadData()
+    data.bodies["cloud-before-2006"] +=
+      '<WordLink slug="meme">ミーム</WordLink>'
+    expect(validate(data).errors).toContain(
+      'articles/cloud-before-2006: 本文の <WordLink slug="meme"> が公開中の言葉にありません'
+    )
+  })
+})
+
 describe("kanaRowOf", () => {
   it("maps readings to gojūon rows", () => {
     expect(kanaRowOf("ぴーあーる")).toBe("は")

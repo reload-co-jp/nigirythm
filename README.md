@@ -57,6 +57,7 @@ data/                辞典データ（JSON）
   sources.json       出典（Source）
   categories.json    分類
   articles.json      記事のメタデータ（Article）
+  relations.json     意味どうしの関係（Relation）。出典で裏付けられるものだけ
 lib/                 データ取得・整形、サイト設定
 scripts/validate.ts  データ検証スクリプト（＋テスト）
 styles/              デザイントークン、グローバルスタイル、Emotion の SSR レジストリ
@@ -78,7 +79,14 @@ Emotion は React Context を使うため、スタイルを定義するコンポ
    - `relationship_type`：`origin` / `extension` / `metaphor` / `abbreviation` / `proper-noun` / `jargon-transfer` / `semantic-shift` / `unrelated`
    - `certainty`：`confirmed`（確認済み）/ `probable`（有力）/ `disputed`（諸説あり）/ `unknown`（未確認）
    - 確認できない `first_attestation` などは空文字にする（画面には「未確認（調査中）」と表示される）。
-4. `pnpm validate` でエラーがないことを確認する。
+4. 表記ゆれ・原綴り・略称は `aliases` に入れると検索で引ける（例：`["Macintosh"]`）。
+5. 意味どうしの関係を出典で確認できたら `data/relations.json` に追加する。言葉ページの「意味の関係図」に線として描かれる。関係が1件もない言葉は、従来の「意味の分岐」を表示する。
+   - `from` / `to`：同じ見出し語の sense id（矢印は from → to）
+   - `type`：`semantic-shift`（意味の変化・拡張）/ `metaphor`（比喩）/ `jargon-transfer`（専門用語への転用）/ `etymology`（共通の語源）/ `coincidence`（偶然の一致）
+   - `description`・`source_ids`（必須）・`certainty`
+   - 根拠のない関係は登録しない（線を引かない）。
+6. 出典の `primary` は、当事者・原典による一次資料なら `true`、辞書・解説記事などの二次資料なら `false`。
+7. `pnpm validate` でエラーがないことを確認する。
 
 ### 記事を追加する
 
@@ -102,6 +110,8 @@ Emotion は React Context を使うため、スタイルを定義するコンポ
 ```
 
 3. 対象の言葉の `article_ids` と、記事の `word_ids` の両方に互いを登録する（片方だけだと `pnpm validate` が警告する）。
+4. 記事が成り立ちを掘り下げている意味を `sense_ids` に登録すると、言葉ページの該当する意味に「この意味が生まれた背景を読む」リンクが出る。
+5. 本文で言葉に初めて触れる箇所は `<WordLink slug="bug">バグ</WordLink>` で辞典ページへリンクする（公開中の言葉以外は `pnpm validate` がエラーにする）。
 
 ## デプロイ
 

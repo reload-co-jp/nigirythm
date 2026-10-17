@@ -71,6 +71,31 @@ const Senses = styled.ol({
   },
 })
 
+const Facts = styled.ul({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: `${space.xs} ${space.sm}`,
+  listStyle: "none",
+  fontSize: fontSize.xs,
+  color: color.sub,
+})
+
+/** 成り立ちの区別。色に頼らず、文言と罫線の種類（実線／破線）で示す */
+const Kind = styled.li<{ $distinct: boolean }>(({ $distinct }) => ({
+  padding: "0 0.4em",
+  border: `1px ${$distinct ? "dashed" : "solid"} ${color.sub}`,
+}))
+
+export const WordFacts = ({ word }: { word: WordSummary }) => (
+  <Facts aria-label="この言葉の概要">
+    <li>{word.senseLabels.length}つの意味</li>
+    <Kind $distinct={word.distinctOrigins}>
+      {word.distinctOrigins ? "由来が別の意味を含む" : "意味がつながる多義語"}
+    </Kind>
+    {word.articleCount > 0 && <li>読み物{word.articleCount}本</li>}
+  </Facts>
+)
+
 export const WordCard = ({ word }: { word: WordSummary }) => (
   <Item>
     <Head>
@@ -78,6 +103,7 @@ export const WordCard = ({ word }: { word: WordSummary }) => (
         <Link href={`/words/${word.slug}/`}>{word.written_form}</Link>
       </Title>
       <Reading>{word.reading}</Reading>
+      <WordFacts word={word} />
     </Head>
     <Body>
       <Senses aria-label="意味">

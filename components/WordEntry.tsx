@@ -6,11 +6,12 @@ import type { Certainty, Source } from "@/lib/data"
 import { color, font, fontSize, lineHeight, mq, space } from "@/styles/tokens"
 import { ArticleCard, type ArticleSummary } from "./ArticleCard"
 import { CategoryLabel, LabelRow, Tag } from "./CategoryLabel"
-import { RelatedWords } from "./RelatedWords"
+import { type RelatedItem, RelatedWords } from "./RelatedWords"
+import { type GraphEdge, SenseGraph } from "./SenseGraph"
 import { SenseTree } from "./SenseTree"
 import { SourceList } from "./SourceList"
 import { Kicker, Lede, Note, Reading, SectionTitle } from "./Typography"
-import { Aside, MetaList, Section, SideBox, TwoColumn } from "./ui"
+import { Aside, Badge, MetaList, Section, SideBox, TwoColumn } from "./ui"
 
 export type SenseView = {
   id: string
@@ -27,6 +28,8 @@ export type SenseView = {
   certaintyText: string
   /** 出典一覧での通し番号と id */
   refs: { id: string; n: number }[]
+  /** この意味の成り立ちを掘り下げた記事 */
+  articles: { slug: string; title: string }[]
 }
 
 export type WordEntryProps = {
@@ -38,7 +41,10 @@ export type WordEntryProps = {
   tags: string[]
   senses: SenseView[]
   sources: Source[]
-  related: { slug: string; written_form: string; reading: string }[]
+  /** 出典で裏付けられた意味どうしの関係。空なら関係図の代わりに意味の分岐を表示する */
+  relations: GraphEdge[]
+  related: RelatedItem[]
+  sameCategory: RelatedItem[]
   articles: ArticleSummary[]
 }
 
@@ -74,22 +80,6 @@ const SenseTitle = styled.h3({
   span: { color: color.accent, fontSize: fontSize.lg },
 })
 
-const certaintyColor: Record<Certainty, string> = {
-  confirmed: color.ink,
-  probable: color.sub,
-  disputed: color.accent,
-  unknown: color.faint,
-}
-
-const Badge = styled.span<{ $certainty: Certainty }>(({ $certainty }) => ({
-  display: "inline-block",
-  fontSize: fontSize.xs,
-  padding: "0 0.5em",
-  border: `1px solid ${certaintyColor[$certainty]}`,
-  color: certaintyColor[$certainty],
-  borderStyle: $certainty === "unknown" ? "dashed" : "solid",
-}))
-
 const Fields = styled(MetaList)({
   [mq.md]: { gridTemplateColumns: "auto 1fr auto 1fr" },
 })
@@ -124,6 +114,17 @@ const Refs = styled.p({
 
 const Muted = styled.span({ color: color.faint })
 
+const ReadMore = styled.ul({
+  listStyle: "none",
+  display: "grid",
+  gap: space.xs,
+  paddingLeft: space.md,
+  borderLeft: `3px solid ${color.accent}`,
+  fontSize: fontSize.sm,
+  a: { fontWeight: 700, textUnderlineOffset: "0.2em" },
+  "a:hover": { color: color.accent },
+})
+
 const orUnknown = (text: string) =>
   text ? text : <Muted>未確認（調査中）</Muted>
 
@@ -143,20 +144,35 @@ export const WordEntry = (props: WordEntryProps) => (
       </LabelRow>
     </Head>
 
-    <Section aria-labelledby="tree">
-      <SectionTitle id="tree" className="visually-hidden">
-        意味の分岐
-      </SectionTitle>
-      <SenseTree
-        root={props.writtenForm}
-        branches={props.senses.map((s) => ({
-          id: s.id,
-          label: s.label,
-          relation: s.relation,
-          unrelated: s.unrelated,
-        }))}
-      />
-    </Section>
+    {props.relations.length > 0 ? (
+      <Section aria-labelledby="graph">
+        <SectionTitle id="graph">意味の関係図</SectionTitle>
+        <SenseGraph
+          root={props.writtenForm}
+          nodes={props.senses.map(({ id, label, field }) => ({
+            id,
+            label,
+            field,
+          }))}
+          edges={props.relations}
+        />
+      </Section>
+    ) : (
+      <Section aria-labelledby="tree">
+        <SectionTitle id="tree" className="visually-hidden">
+          意味の分岐
+        </SectionTitle>
+        <SenseTree
+          root={props.writtenForm}
+          branches={props.senses.map((s) => ({
+            id: s.id,
+            label: s.label,
+            relation: s.relation,
+            unrelated: s.unrelated,
+          }))}
+        />
+      </Section>
+    )}
 
     <TwoColumn>
       <div>
@@ -204,6 +220,16 @@ export const WordEntry = (props: WordEntryProps) => (
                 </a>
               ))}
             </Refs>
+            {s.articles.length > 0 && (
+              <ReadMore aria-label="この意味の読み物">
+                {s.articles.map((a) => (
+                  <li key={a.slug}>
+                    この意味が生まれた背景を読む：
+                    <Link href={`/articles/${a.slug}/`}>{a.title}</Link>
+                  </li>
+                ))}
+              </ReadMore>
+            )}
           </SenseBlock>
         ))}
 
@@ -221,6 +247,11 @@ export const WordEntry = (props: WordEntryProps) => (
         {props.related.length > 0 && (
           <SideBox title="関連する言葉">
             <RelatedWords words={props.related} />
+          </SideBox>
+        )}
+        {props.sameCategory.length > 0 && (
+          <SideBox title="同じ分類の言葉">
+            <RelatedWords words={props.sameCategory} />
           </SideBox>
         )}
         {props.articles.length > 0 && (

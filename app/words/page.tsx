@@ -11,7 +11,7 @@ const crumbs = [{ name: "言葉", path: "/words/" }]
 export const metadata: Metadata = {
   title: "言葉一覧",
   description:
-    "同じ表記で複数の意味を持つ言葉の一覧。読みの頭文字、分類、キーワードで絞り込めます。",
+    "同じ表記で複数の意味を持つ言葉の一覧。表記・読み・別表記で検索し、分類や意味の成り立ち（多義語か、由来の異なる意味を含むか）で絞り込めます。",
   alternates: { canonical: "/words/" },
 }
 
@@ -23,7 +23,7 @@ const Page = () => (
       <Kicker>Words</Kicker>
       <DisplayTitle>言葉一覧</DisplayTitle>
       <Lede>
-        出典を確認できた言葉を掲載しています。表記・読み・意味の名前から検索できます。
+        出典を確認できた言葉を掲載しています。表記・読み・別表記・意味の名前から検索でき、分類や意味の成り立ちで絞り込めます。
       </Lede>
     </PageHeader>
     <WordsExplorer

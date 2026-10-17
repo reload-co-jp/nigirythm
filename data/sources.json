@@ -9,7 +9,8 @@
     "source_type": "dictionary",
     "relevant_section": "精選版 日本国語大辞典「ピー‐アール【PR】」、デジタル大辞泉「PR」",
     "supports": "PRが public relations の頭文字であり「広報」を意味すること、一般に長所・美点を宣伝する意でも用いられること、press release の略としての用法",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "prsa-about",
@@ -21,7 +22,8 @@
     "source_type": "official",
     "relevant_section": "冒頭の定義（1982年採択の定義と現行定義）",
     "supports": "public relations の公式な定義と、その実践が20世紀初頭にさかのぼること",
-    "notes": "現行定義：\"Public relations is a strategic communication process that builds mutually beneficial relationships between organizations and their publics.\""
+    "notes": "現行定義：\"Public relations is a strategic communication process that builds mutually beneficial relationships between organizations and their publics.\"",
+    "primary": true
   },
   {
     "id": "gh-docs-pr",
@@ -33,7 +35,8 @@
     "source_type": "official",
     "relevant_section": "\"Pull requests are proposals to merge code changes into a project.\"",
     "supports": "ソフトウェア開発における pull request の定義",
-    "notes": ""
+    "notes": "",
+    "primary": true
   },
   {
     "id": "git-request-pull",
@@ -45,7 +48,8 @@
     "source_type": "official",
     "relevant_section": "NAME / EXAMPLES",
     "supports": "Git本体に、上流へ変更の取り込み（pull）を依頼する文面を生成するコマンドがあること",
-    "notes": "GitHubのプルリクエストという呼称との歴史的な前後関係は、この資料だけでは確定できない。"
+    "notes": "GitHubのプルリクエストという呼称との歴史的な前後関係は、この資料だけでは確定できない。",
+    "primary": true
   },
   {
     "id": "kb-mac",
@@ -57,7 +61,8 @@
     "source_type": "dictionary",
     "relevant_section": "IT用語がわかる辞典「マック【Mac】」、デジタル大辞泉プラス「マック〔チェーン店〕」「マック〔化粧品〕」",
     "supports": "「マック」が Macintosh の略、マクドナルドの俗称、化粧品ブランド名として辞書に載っていること",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-macintosh",
@@ -69,7 +74,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉［補説］、日本大百科全書「マッキントッシュ（パソコン）」",
     "supports": "Macintosh の名称がリンゴの品種名 McIntosh にちなむこと、1984年に発売されたこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-makudo",
@@ -81,7 +87,8 @@
     "source_type": "dictionary",
     "relevant_section": "「マクド」の解説",
     "supports": "「マクド」がマクドナルドの俗称で、主に関西方面で用いられるとされること",
-    "notes": "使用地域の境界を示す統計資料ではない。"
+    "notes": "使用地域の境界を示す統計資料ではない。",
+    "primary": false
   },
   {
     "id": "raskin-origin",
@@ -94,7 +101,8 @@
     "source_type": "article",
     "relevant_section": "冒頭段落",
     "supports": "1979年秋にジェフ・ラスキンが社内メモで計画を提案し、好みのリンゴの品種 McIntosh を意図的に綴り替えて Macintosh と名付けたこと",
-    "notes": "ラスキンの業績を顕彰する団体の記事であり、当事者側の資料として扱う。"
+    "notes": "ラスキンの業績を顕彰する団体の記事であり、当事者側の資料として扱う。",
+    "primary": false
   },
   {
     "id": "macworld-name",
@@ -107,7 +115,8 @@
     "source_type": "news",
     "relevant_section": "ラスキンの発言と1982年の商標出願に関する段落",
     "supports": "綴りの変更は音響機器メーカー McIntosh Laboratory との衝突を避ける意図だったとラスキンが述べていること、1982年の商標出願が当初認められなかったこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-riichi",
@@ -119,7 +128,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「リーチ【立直】」とその［補説］、精選版 日本国語大辞典「リー‐チ【立直】」",
     "supports": "麻雀のリーチが中国語「立直」に由来するとされること、聴牌を宣言する役であること、転じて「あと一歩」の意で使われること、中国麻雀には「リーチ」という役がないこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-reach",
@@ -131,7 +141,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「リーチ（reach）」、精選版 日本国語大辞典「リーチ（英語 reach）」",
     "supports": "英語 reach に由来するリーチが、腕を伸ばして届く長さ・範囲（ボクシング、テニスなど）を意味すること",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-mouse",
@@ -143,7 +154,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「マウス」",
     "supports": "マウスがハツカネズミの飼養白変種（実験動物）を指すこと、入力装置の名称がケーブルを接続した形がネズミに似ていることに由来するとされること",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "sri-mouse",
@@ -155,7 +167,8 @@
     "source_type": "official",
     "relevant_section": "本文（開発経緯と特許）",
     "supports": "エンゲルバートが1960年代前半に開発を始め、ビル・イングリッシュが1964年に最初の試作機を製作したこと、特許名が「X-Y Position Indicator for a Display System」で1967年出願・1970年成立であること、1968年のデモ",
-    "notes": "開発機関自身による歴史紹介。"
+    "notes": "開発機関自身による歴史紹介。",
+    "primary": true
   },
   {
     "id": "engelbart-mouse",
@@ -167,7 +180,8 @@
     "source_type": "official",
     "relevant_section": "Overview / The First Mouse",
     "supports": "マウスが1964年秋にスタンフォード研究所（現SRI）で発明されたこと、試作機のコード（tail）の向きを変えた経緯",
-    "notes": "エンゲルバートの家族が設立した団体の資料。"
+    "notes": "エンゲルバートの家族が設立した団体の資料。",
+    "primary": true
   },
   {
     "id": "kb-cloud",
@@ -179,7 +193,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉［補説］、日本大百科全書「クラウドコンピューティング」",
     "supports": "「クラウド（雲）」がネットワークのイメージ図でインターネットを雲として表すことに由来すること",
-    "notes": "日本大百科全書は2006年のエリック・シュミットを初使用と「される」と記すが、それ以前の用例がある（mittr-cloud参照）。"
+    "notes": "日本大百科全書は2006年のエリック・シュミットを初使用と「される」と記すが、それ以前の用例がある（mittr-cloud参照）。",
+    "primary": false
   },
   {
     "id": "mittr-cloud",
@@ -192,7 +207,8 @@
     "source_type": "news",
     "relevant_section": "Compaq社内文書とシュミット発言に関する段落",
     "supports": "1996年11月14日付のCompaq社内文書「Internet Solutions Division Strategy for Cloud Computing」が印刷物での最古の既知用例とされること、2006年8月9日のシュミット発言、2007年以降の普及",
-    "notes": "命名者がFavaloroかO'Sullivanかは同記事でも未確定とされている。"
+    "notes": "命名者がFavaloroかO'Sullivanかは同記事でも未確定とされている。",
+    "primary": false
   },
   {
     "id": "kb-virus",
@@ -204,7 +220,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「ウイルス（ラテン virus）」、精選版 日本国語大辞典の初出の実例",
     "supports": "ウイルスがラテン語 virus（毒の意）に由来すること、病原体の意とコンピューターウイルスの略の意があること、日本語での用例（1956年）",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "cohen-1984",
@@ -217,7 +234,8 @@
     "source_type": "paper",
     "relevant_section": "Introduction and Abstract",
     "supports": "自身を他のプログラムに付着させて複製する「virus」という計算機セキュリティ上の問題を定義した論文であること",
-    "notes": "命名の経緯（誰が名付けたか）はこの節では確認していない。"
+    "notes": "命名の経緯（誰が名付けたか）はこの節では確認していない。",
+    "primary": true
   },
   {
     "id": "kb-token",
@@ -229,7 +247,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「トークン（token）」1〜4",
     "supports": "トークンの語義（証拠、代用貨幣、認証用の小型装置、大規模言語モデルにおける文章の最小単位）",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "rfc6750",
@@ -242,7 +261,8 @@
     "source_type": "official",
     "relevant_section": "Abstract",
     "supports": "bearer token を所持する者は誰でも関連リソースにアクセスできる、という認証トークンの性質",
-    "notes": ""
+    "notes": "",
+    "primary": true
   },
   {
     "id": "openai-tokens",
@@ -254,7 +274,8 @@
     "source_type": "official",
     "relevant_section": "Overview",
     "supports": "トークンがモデルが文章を処理する単位で、文字・単語の一部・単語・句読点を表しうること、単語数とは一致しないこと",
-    "notes": "ページは随時更新される。"
+    "notes": "ページは随時更新される。",
+    "primary": true
   },
   {
     "id": "kb-bug",
@@ -266,7 +287,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「バグ（bug）」",
     "supports": "バグが英語 bug（虫の意）に由来し、プログラム上の不具合や誤りを指すこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "jstor-daily-bug",
@@ -279,7 +301,8 @@
     "source_type": "article",
     "relevant_section": "本文",
     "supports": "1947年の蛾の逸話が語源としては正確でないこと、エジソンが1878年の書簡で不具合を「Bugs」と呼んでいること、スミソニアンの解説が記録簿は「おそらくホッパーのものではない」としていること",
-    "notes": "Shapiro (shapiro-bug) の論文を紹介する二次資料。"
+    "notes": "Shapiro (shapiro-bug) の論文を紹介する二次資料。",
+    "primary": false
   },
   {
     "id": "shapiro-bug",
@@ -291,7 +314,8 @@
     "source_type": "paper",
     "relevant_section": "",
     "supports": "コンピューターの bug の語源と俗説を扱った論文の存在",
-    "notes": "JSTOR Daily の記事からの参照で確認。本文は未参照のため、論文固有の主張は掲載していない。"
+    "notes": "JSTOR Daily の記事からの参照で確認。本文は未参照のため、論文固有の主張は掲載していない。",
+    "primary": false
   },
   {
     "id": "kb-spam",
@@ -303,7 +327,8 @@
     "source_type": "dictionary",
     "relevant_section": "IT用語がわかる辞典「スパム」の◇注記",
     "supports": "迷惑メッセージの意のスパムが、ホーメル食品の缶詰 SPAM と、モンティ・パイソンの番組で大量にスパムが登場する場面からの連想に由来するとされること",
-    "notes": "辞典自身が「〜とされる」と記している。"
+    "notes": "辞典自身が「〜とされる」と記している。",
+    "primary": false
   },
   {
     "id": "spam-faq",
@@ -315,7 +340,8 @@
     "source_type": "official",
     "relevant_section": "What does the SPAM® brand name mean?",
     "supports": "SPAM がホーメルフーズの商標であり、ブランド名の意味自体が長く憶測の対象であること",
-    "notes": ""
+    "notes": "",
+    "primary": true
   },
   {
     "id": "kb-cookie",
@@ -327,7 +353,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「クッキー（Cookie）」「クッキー（アメリカ cookie）」",
     "supports": "菓子のクッキーと、ブラウザーに保存される情報としてのクッキーの両語義",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "montulli-cookie",
@@ -340,7 +367,8 @@
     "source_type": "article",
     "relevant_section": "History / The name",
     "supports": "1994年にNetscapeで開発されたこと、名称は大学のOSの授業で聞いた \"magic cookie\" に由来し、意味の近さと響きの好みから \"cookies\" を選んだという当事者証言",
-    "notes": "開発者本人による回想。"
+    "notes": "開発者本人による回想。",
+    "primary": true
   },
   {
     "id": "rfc6265",
@@ -353,7 +381,8 @@
     "source_type": "official",
     "relevant_section": "Abstract",
     "supports": "Cookie / Set-Cookie ヘッダーにより、状態を持たないHTTP上でサーバーが状態（cookies）を保持できること",
-    "notes": ""
+    "notes": "",
+    "primary": true
   },
   {
     "id": "kb-window-jp",
@@ -365,7 +394,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「ウインドー（window）」1・3",
     "supports": "ウインドーが「窓」と、ディスプレー上に窓のように置かれる長方形の表示領域を指すこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-window-en",
@@ -377,7 +407,8 @@
     "source_type": "encyclopedia",
     "relevant_section": "【窓】より",
     "supports": "英語 window が「風の目」を原義とすること",
-    "notes": "原語（古ノルド語など）の詳細は本資料に記載なし。"
+    "notes": "原語（古ノルド語など）の詳細は本資料に記載なし。",
+    "primary": false
   },
   {
     "id": "kb-hacker",
@@ -389,7 +420,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉［補説］、共同通信ニュース用語解説「ハッカー」",
     "supports": "本来は高度な知識を持つ技術者の意であったが、近年は不正侵入する犯罪者の意でも使われること、悪意ある者をクラッカーと呼んで区別することが多いこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "jargon-hacker",
@@ -401,7 +433,8 @@
     "source_type": "dictionary",
     "relevant_section": "hacker: n. の各語義",
     "supports": "ハッカー文化内部での語義（特定のプログラムの熟達者、制約を創造的に乗り越える知的挑戦を楽しむ人）と、「悪意ある詮索者」の語義を[deprecated]としていること",
-    "notes": "ハッカー文化の当事者による用語集。"
+    "notes": "ハッカー文化の当事者による用語集。",
+    "primary": false
   },
   {
     "id": "kb-icon",
@@ -413,7 +446,8 @@
     "source_type": "dictionary",
     "relevant_section": "百科事典マイペディア「アイコン」",
     "supports": "アイコンが画像を意味するギリシア語イコンからきた言葉で、GUIで機能やファイルを表す絵記号を指すこと",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "kb-python",
@@ -425,7 +459,8 @@
     "source_type": "dictionary",
     "relevant_section": "デジタル大辞泉「パイソン」1・2、精選版 日本国語大辞典「パイソン」",
     "supports": "パイソンがニシキヘビの別名、スクリプト言語名、ギリシア神話でアポロが退治した大蛇の名であること",
-    "notes": ""
+    "notes": "",
+    "primary": false
   },
   {
     "id": "python-faq",
@@ -437,6 +472,7 @@
     "source_type": "official",
     "relevant_section": "Why is it called Python?",
     "supports": "言語名が「Monty Python's Flying Circus」に由来し、短く独特でやや謎めいた名前を求めたというグイド・ヴァンロッサムの経緯",
-    "notes": ""
+    "notes": "",
+    "primary": true
   }
 ]

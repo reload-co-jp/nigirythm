@@ -3,6 +3,7 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
 import { ReactNode } from "react"
+import type { Certainty } from "@/lib/data"
 import {
   color,
   font,
@@ -123,3 +124,22 @@ export const Empty = styled.p({
   fontSize: fontSize.sm,
   paddingBlock: space.lg,
 })
+
+const certaintyColor: Record<Certainty, string> = {
+  confirmed: color.ink,
+  probable: color.sub,
+  disputed: color.accent,
+  unknown: color.faint,
+}
+
+/** 根拠の確度。文言で示し、色と罫線（未確認は破線）は補助 */
+export const Badge = styled.span<{ $certainty: Certainty }>(
+  ({ $certainty }) => ({
+    display: "inline-block",
+    fontSize: fontSize.xs,
+    padding: "0 0.5em",
+    border: `1px solid ${certaintyColor[$certainty]}`,
+    color: certaintyColor[$certainty],
+    borderStyle: $certainty === "unknown" ? "dashed" : "solid",
+  })
+)

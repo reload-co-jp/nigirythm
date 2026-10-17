@@ -6,10 +6,22 @@ import type { Source } from "@/lib/data"
 import { color, font, fontSize, lineHeight, mq, space } from "@/styles/tokens"
 import { ArticleCard, type ArticleSummary, formatDate } from "./ArticleCard"
 import { CategoryLabel, LabelRow } from "./CategoryLabel"
-import { RelatedWords } from "./RelatedWords"
+import { type RelatedItem, RelatedWords } from "./RelatedWords"
 import { SourceList } from "./SourceList"
 import { Note, Prose, SectionTitle } from "./Typography"
 import { Aside, Section, SideBox, TwoColumn } from "./ui"
+
+const WordColumns = styled.div({
+  display: "grid",
+  gap: space.xl,
+  [mq.md]: { gridTemplateColumns: "repeat(2, minmax(0, 1fr))" },
+  h3: {
+    fontFamily: font.serif,
+    fontSize: fontSize.md,
+    paddingBottom: space.sm,
+    borderBottom: `1px solid ${color.ink}`,
+  },
+})
 
 const Head = styled.header({
   display: "grid",
@@ -59,17 +71,22 @@ export const ArticleLayout = ({
   words,
   categories,
   sources,
-  others,
+  related,
+  next,
   children,
 }: {
   title: string
   dek: string
   publishedAt: string
   updatedAt: string
-  words: { slug: string; written_form: string; reading: string }[]
+  /** 記事で取り上げた言葉。note には意味の違いを添える */
+  words: RelatedItem[]
   categories: { slug: string; name: string }[]
   sources: Source[]
-  others: ArticleSummary[]
+  /** 取り上げた言葉の関連語（記事内の言葉を除く） */
+  related: RelatedItem[]
+  /** 共通の言葉・分類を持つ記事 */
+  next: ArticleSummary[]
   children: ReactNode
 }) => (
   <article>
@@ -100,18 +117,38 @@ export const ArticleLayout = ({
           <SectionTitle id="sources">出典</SectionTitle>
           <SourceList sources={sources} />
         </Section>
+        <Section aria-labelledby="article-words">
+          <SectionTitle id="article-words" className="visually-hidden">
+            この記事の言葉
+          </SectionTitle>
+          <WordColumns>
+            <section>
+              <h3>この記事で取り上げた言葉</h3>
+              <RelatedWords words={words} />
+            </section>
+            {related.length > 0 && (
+              <section>
+                <h3>関連する言葉</h3>
+                <RelatedWords words={related} />
+              </section>
+            )}
+          </WordColumns>
+        </Section>
+        {next.length > 0 && (
+          <Section aria-labelledby="next">
+            <SectionTitle id="next">次に読みたい記事</SectionTitle>
+            <WordColumns>
+              {next.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </WordColumns>
+          </Section>
+        )}
       </div>
       <Aside>
         <SideBox title="この記事の言葉">
-          <RelatedWords words={words} />
+          <RelatedWords words={words.map(({ note: _, ...w }) => w)} />
         </SideBox>
-        {others.length > 0 && (
-          <SideBox title="ほかの読み物">
-            {others.map((a) => (
-              <ArticleCard key={a.slug} article={a} />
-            ))}
-          </SideBox>
-        )}
       </Aside>
     </TwoColumn>
   </article>

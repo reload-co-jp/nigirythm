@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import {
   CategoryDirectory,
   Hero,
@@ -19,6 +20,9 @@ import {
 } from "@/lib/data"
 import { site } from "@/lib/site"
 import { toArticleSummary } from "@/lib/views"
+
+// canonical はページごとに設定する（レイアウトに置くと 404 などにも継承されるため）
+export const metadata: Metadata = { alternates: { canonical: "/" } }
 
 const Page = () => {
   const today = toWordSummary(getWordOfTheDay())

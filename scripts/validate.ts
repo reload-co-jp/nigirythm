@@ -15,6 +15,7 @@ export type Data = {
   sources: Row[]
   categories: Row[]
   articles: Row[]
+  relations: Row[]
   /** 記事 slug → MDX 本文（ファイルがなければ undefined） */
   bodies: Record<string, string | undefined>
 }
@@ -28,6 +29,13 @@ const RELATIONSHIPS = [
   "jargon-transfer",
   "semantic-shift",
   "unrelated",
+]
+const RELATION_TYPES = [
+  "semantic-shift",
+  "metaphor",
+  "jargon-transfer",
+  "etymology",
+  "coincidence",
 ]
 const CERTAINTIES = ["confirmed", "probable", "disputed", "unknown"]
 const STATUSES = ["published", "candidate", "draft"]
@@ -62,6 +70,7 @@ export const loadData = (root = process.cwd()): Data => {
     sources: read("sources"),
     categories: read("categories"),
     articles,
+    relations: read("relations"),
     bodies,
   }
 }
@@ -79,7 +88,7 @@ export const validate = (d: Data) => {
     return map
   }
   const words = index(d.words, "words")
-  index(d.senses, "senses")
+  const senses = index(d.senses, "senses")
   const sources = index(d.sources, "sources")
   const categories = index(d.categories, "categories")
   const articles = index(d.articles, "articles")
@@ -147,8 +156,46 @@ export const validate = (d: Data) => {
     }
   }
 
+  const pairs = new Set<string>()
+  for (const r of d.relations) {
+    const at = `relations/${r.from}→${r.to}`
+    const from = senses.get(r.from as string)
+    const to = senses.get(r.to as string)
+    if (!from) errors.push(`${at}: 関係元の意味 "${r.from}" が存在しません`)
+    if (!to) errors.push(`${at}: 関係先の意味 "${r.to}" が存在しません`)
+    if (from && to && from.word_id !== to.word_id)
+      errors.push(`${at}: 別々の見出し語の意味を結んでいます`)
+    if (r.from === r.to) errors.push(`${at}: 同じ意味どうしを結んでいます`)
+    const pair = [r.from, r.to].sort().join("|")
+    if (pairs.has(pair))
+      errors.push(`${at}: 同じ意味の組の関係が重複しています`)
+    pairs.add(pair)
+    if (!RELATION_TYPES.includes(r.type as string))
+      errors.push(`${at}: type "${r.type}" が不正です`)
+    if (!CERTAINTIES.includes(r.certainty as string))
+      errors.push(`${at}: certainty "${r.certainty}" が不正です`)
+    if (!r.description) errors.push(`${at}: description が空です`)
+    // 根拠のない関係は線を引かない：出典は必須
+    const refs = ids(r.source_ids)
+    if (refs.length === 0) errors.push(`${at}: 出典が登録されていません`)
+    for (const s of refs) {
+      usedSources.add(s)
+      if (!sources.has(s)) errors.push(`${at}: 出典 "${s}" が存在しません`)
+    }
+  }
+
+  const wordSlugs = new Set(
+    d.words.filter((w) => w.status === "published").map((w) => w.slug)
+  )
+
   for (const a of d.articles) {
     const at = `articles/${a.id}`
+    for (const s of ids(a.sense_ids)) {
+      const sense = senses.get(s)
+      if (!sense) errors.push(`${at}: 意味 "${s}" が存在しません`)
+      else if (!ids(a.word_ids).includes(sense.word_id as string))
+        errors.push(`${at}: 意味 "${s}" の見出し語が word_ids にありません`)
+    }
     if (!STATUSES.includes(a.status as string))
       errors.push(`${at}: status "${a.status}" が不正です`)
     for (const w of ids(a.word_ids)) {
@@ -181,6 +228,11 @@ export const validate = (d: Data) => {
       if (!refs.includes(c))
         errors.push(
           `${at}: 本文の <Ref id="${c}" /> が source_ids にありません`
+        )
+    for (const m of body.matchAll(/<WordLink slug="([^"]+)"/g))
+      if (!wordSlugs.has(m[1]))
+        errors.push(
+          `${at}: 本文の <WordLink slug="${m[1]}"> が公開中の言葉にありません`
         )
     for (const r of refs)
       if (!cited.includes(r))
@@ -247,7 +299,7 @@ const main = async () => {
   for (const e of result.errors) console.error(`error ${e}`)
   const published = data.words.filter((w) => w.status === "published").length
   console.log(
-    `words ${published} published / ${data.words.length} total, senses ${data.senses.length}, sources ${data.sources.length}, articles ${data.articles.length}`
+    `words ${published} published / ${data.words.length} total, senses ${data.senses.length}, relations ${data.relations.length}, sources ${data.sources.length}, articles ${data.articles.length}`
   )
   console.log(
     `${result.errors.length} error(s), ${result.warnings.length} warning(s)`

@@ -55,6 +55,9 @@ export const SourceList = ({ sources }: { sources: Source[] }) => (
         <div>
           <Title>
             <Type>{sourceTypeLabel[s.source_type] ?? s.source_type}</Type>
+            <Type title="一次資料：当事者・原典による資料／二次資料：辞書・解説記事など">
+              {s.primary ? "一次資料" : "二次資料"}
+            </Type>
             <a href={s.url} target="_blank" rel="noopener noreferrer">
               {s.title}
             </a>

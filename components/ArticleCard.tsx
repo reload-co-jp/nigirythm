@@ -17,6 +17,7 @@ export type ArticleSummary = {
   title: string
   dek: string
   published_at: string
+  updated_at: string
   words: { slug: string; written_form: string }[]
 }
 
@@ -72,6 +73,15 @@ export const ArticleCard = ({
       <time dateTime={article.published_at}>
         {formatDate(article.published_at)}
       </time>
+      {article.updated_at !== article.published_at && (
+        <>
+          （更新{" "}
+          <time dateTime={article.updated_at}>
+            {formatDate(article.updated_at)}
+          </time>
+          ）
+        </>
+      )}
     </Note>
   </Item>
 )

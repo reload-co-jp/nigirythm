@@ -1,0 +1,130 @@
+[
+  {
+    "from": "pr-public-relations",
+    "to": "pr-promotion",
+    "type": "semantic-shift",
+    "description": "広報の意から、長所・美点を宣伝する一般的な意味へ広がった。国語辞典は広報の語義に続けて「また、一般に」としてこの意味を載せている。広がった時期と経緯は未確認。",
+    "source_ids": ["kb-pr"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "pr-public-relations",
+    "to": "pr-pull-request",
+    "type": "coincidence",
+    "description": "public relations と pull request という別々の英語の語句の頭文字が、同じ「PR」になったもの。",
+    "source_ids": ["kb-pr", "gh-docs-pr"],
+    "certainty": "probable"
+  },
+  {
+    "from": "mac-macintosh",
+    "to": "mac-mcdonalds",
+    "type": "coincidence",
+    "description": "リンゴの品種名にちなむ Macintosh と、店名のマクドナルドが、日本語で短縮された結果、同じ「マック」になったもの。",
+    "source_ids": ["kb-macintosh", "kb-makudo"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "riichi-mahjong",
+    "to": "riichi-almost",
+    "type": "semantic-shift",
+    "description": "あと一枚で和了できる状態を宣言する麻雀の立直から転じて、「あと一歩」の意で使われる。",
+    "source_ids": ["kb-riichi"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "riichi-mahjong",
+    "to": "riichi-reach",
+    "type": "coincidence",
+    "description": "麻雀のリーチは中国語「立直」から、届く範囲のリーチは英語 reach から来ており、借用元の言語が異なる。",
+    "source_ids": ["kb-riichi", "kb-reach"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "mouse-animal",
+    "to": "mouse-device",
+    "type": "metaphor",
+    "description": "ケーブルを接続した形がネズミに似ていることから、とされる。開発元の資料には、試作機のコードを「tail（しっぽ）」と呼んだ記述がある。",
+    "source_ids": ["kb-mouse", "engelbart-mouse"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "cloud-sky",
+    "to": "cloud-computing",
+    "type": "metaphor",
+    "description": "ネットワークの図でインターネットを雲の形で描くことに由来する。比喩の出どころは辞典で確認できるが、初出と命名者には諸説ある。",
+    "source_ids": ["kb-cloud"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "virus-biology",
+    "to": "virus-computer",
+    "type": "jargon-transfer",
+    "description": "宿主に入り込んで自己を複製する病原体になぞらえ、ほかのプログラムに付着して複製するプログラムを指すようになった。",
+    "source_ids": ["kb-virus", "cohen-1984"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "token-sign",
+    "to": "token-coin",
+    "type": "semantic-shift",
+    "description": "価値の「しるし」として差し出すもの、という意味合いから。",
+    "source_ids": ["kb-token"],
+    "certainty": "probable"
+  },
+  {
+    "from": "token-sign",
+    "to": "token-auth",
+    "type": "jargon-transfer",
+    "description": "持っていること自体が資格の証明になる「しるし」として、認証の仕組みに用いられる。",
+    "source_ids": ["kb-token", "rfc6750"],
+    "certainty": "probable"
+  },
+  {
+    "from": "bug-insect",
+    "to": "bug-defect",
+    "type": "metaphor",
+    "description": "虫の意の bug を、機械の小さな不具合に当てた。1878年のエジソンの書簡に用例があり、1947年の蛾の逸話より古い。",
+    "source_ids": ["kb-bug", "jstor-daily-bug"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "spam-food",
+    "to": "spam-junk",
+    "type": "metaphor",
+    "description": "モンティ・パイソンの番組に缶詰のスパムが大量に登場する場面があり、その連想から迷惑行為を指すようになったとされる。",
+    "source_ids": ["kb-spam"],
+    "certainty": "probable"
+  },
+  {
+    "from": "window-building",
+    "to": "window-gui",
+    "type": "metaphor",
+    "description": "画面の一部を区切って中身をのぞかせる様子を、窓に見立てた。",
+    "source_ids": ["kb-window-jp"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "hacker-expert",
+    "to": "hacker-intruder",
+    "type": "semantic-shift",
+    "description": "熟達した技術者の意から、不正侵入する犯罪者の意でも使われるようになった。ハッカー文化の用語集はこの語義を非推奨としている。",
+    "source_ids": ["kb-hacker", "jargon-hacker"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "icon-image",
+    "to": "icon-gui",
+    "type": "etymology",
+    "description": "どちらも、画像を意味するギリシア語イコンに由来する。",
+    "source_ids": ["kb-icon"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "python-snake",
+    "to": "python-language",
+    "type": "coincidence",
+    "description": "言語名はコメディ番組「Monty Python's Flying Circus」に由来し、蛇から名付けたものではない。",
+    "source_ids": ["kb-python", "python-faq"],
+    "certainty": "confirmed"
+  }
+]

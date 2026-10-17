@@ -5,6 +5,7 @@
     "title": "PRには顔がいくつある？　広報、自己PR、プルリクエスト",
     "dek": "就職活動の「自己PR」、企業の「PR部」、エンジニアの「PR出しました」。同じ2文字が指すものは、話し手の職業によってまるごと入れ替わる。",
     "word_ids": ["pr", "mac"],
+    "sense_ids": ["pr-public-relations", "pr-promotion", "pr-pull-request"],
     "category_ids": ["abbreviation", "semantic-change"],
     "source_ids": ["kb-pr", "prsa-about", "gh-docs-pr", "git-request-pull"],
     "status": "published",
@@ -17,6 +18,7 @@
     "title": "クラウドは2006年に生まれたのか",
     "dek": "「クラウドコンピューティング」の生みの親として語られるのは、2006年のGoogle CEOの発言だ。だが調べていくと、10年前のテキサスの会議室に、もうひとつの雲が浮かんでいた。",
     "word_ids": ["cloud"],
+    "sense_ids": ["cloud-computing"],
     "category_ids": ["metaphor", "disputed"],
     "source_ids": ["kb-cloud", "mittr-cloud"],
     "status": "published",
@@ -29,6 +31,7 @@
     "title": "最初のバグは蛾ではなかった",
     "dek": "1947年、計算機の中から見つかった一匹の蛾。「バグの語源」として繰り返し語られるこの話には、記録簿の文面そのものに反証が書かれている。",
     "word_ids": ["bug", "virus", "hacker"],
+    "sense_ids": ["bug-defect", "virus-computer", "hacker-intruder"],
     "category_ids": ["disputed", "metaphor"],
     "source_ids": [
       "kb-bug",
@@ -47,6 +50,7 @@
     "title": "リンゴの名前を借りたパソコンと、「マック」の行き先",
     "dek": "Macintosh はリンゴの品種名を綴り替えた名前だった。その略称「マック」は、ハンバーガー店の呼び名ともぶつかる。固有名詞が短くなると、何が起こるのか。",
     "word_ids": ["mac", "pr"],
+    "sense_ids": ["mac-macintosh", "mac-mcdonalds"],
     "category_ids": ["proper-noun", "abbreviation"],
     "source_ids": [
       "kb-mac",
@@ -65,6 +69,7 @@
     "title": "ネズミ、窓、像、雲　画面の中の比喩たち",
     "dek": "私たちは毎日、ネズミを動かして窓を開き、像をクリックして雲に保存している。コンピューターの言葉が身近な物の名前を借り続けた理由を、ひとつずつたどる。",
     "word_ids": ["mouse", "window", "icon", "cloud"],
+    "sense_ids": ["mouse-device", "window-gui", "icon-gui", "cloud-computing"],
     "category_ids": ["metaphor"],
     "source_ids": [
       "kb-mouse",
@@ -85,6 +90,7 @@
     "title": "スパムとパイソン　コメディ番組がIT用語に残したもの",
     "dek": "迷惑メールの「スパム」と、プログラミング言語の「Python」。まったく別の二つの言葉は、どちらもイギリスの同じコメディ番組にたどり着く。",
     "word_ids": ["spam", "python"],
+    "sense_ids": ["spam-food", "spam-junk", "python-language"],
     "category_ids": ["proper-noun", "coincidence"],
     "source_ids": ["kb-spam", "spam-faq", "kb-python", "python-faq"],
     "status": "published",

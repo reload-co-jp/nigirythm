@@ -2,42 +2,84 @@
 
 import styled from "@emotion/styled"
 import { useSearchParams } from "next/navigation"
+import Link from "next/link"
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react"
 import type { WordSummary } from "@/lib/data"
 import { kanaRowOf, kanaRows } from "@/lib/kana"
 import { color, font, fontSize, mq, space, transition } from "@/styles/tokens"
 import { WordCard } from "./WordCard"
 import { Note } from "./Typography"
-import { Empty } from "./ui"
+import { CategoryLabel, LabelRow } from "./CategoryLabel"
 
 const PAGE_SIZE = 10
 
-type Filters = { q: string; row: string; category: string; tag: string }
-const emptyFilters: Filters = { q: "", row: "", category: "", tag: "" }
+type Filters = {
+  q: string
+  row: string
+  category: string
+  tag: string
+  kind: string
+}
+const emptyFilters: Filters = {
+  q: "",
+  row: "",
+  category: "",
+  tag: "",
+  kind: "",
+}
+
+const kinds = [
+  { value: "polysemy", label: "意味がつながる多義語" },
+  { value: "distinct", label: "由来が別の意味を含む" },
+]
 
 const toHiragana = (s: string) =>
   s.replace(/[ァ-ヶ]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
 
-const normalize = (s: string) => toHiragana(s.normalize("NFKC").toLowerCase())
+const smallKana: Record<string, string> = {
+  ぁ: "あ",
+  ぃ: "い",
+  ぅ: "う",
+  ぇ: "え",
+  ぉ: "お",
+  ゃ: "や",
+  ゅ: "ゆ",
+  ょ: "よ",
+  ゎ: "わ",
+}
 
-/** 表記・読み・概要・意味ラベル・タグを対象にした部分一致検索 */
+/**
+ * 表記ゆれを吸収する正規化：全角半角・大小文字・カタカナ／ひらがな、
+ * 小書きの仮名（ウィ／ウイ）、長音・中黒（ブラウザ／ブラウザー、M・A・C／MAC）
+ */
+export const normalize = (s: string) =>
+  toHiragana(s.normalize("NFKC").toLowerCase())
+    .replace(/[ぁぃぅぇぉゃゅょゎ]/g, (c) => smallKana[c])
+    .replace(/[ー・-]/g, "")
+
+/** 表記・読み・別表記・概要・意味ラベル・タグを対象にした部分一致検索 */
 export const matches = (word: WordSummary, f: Filters) => {
   if (f.row && kanaRowOf(word.reading) !== f.row) return false
   if (f.category && !word.categories.some((c) => c.slug === f.category))
     return false
   if (f.tag && !word.tags.includes(f.tag)) return false
+  if (f.kind && (f.kind === "distinct") !== word.distinctOrigins) return false
   const q = normalize(f.q.trim())
   if (!q) return true
   const haystack = normalize(
     [
       word.written_form,
       word.reading,
+      ...word.aliases,
       word.summary,
       ...word.senseLabels,
       ...word.tags,
     ].join(" ")
   )
-  return q.split(/\s+/).every((term) => haystack.includes(term))
+  return q
+    .split(/\s+/)
+    .filter(Boolean)
+    .every((term) => haystack.includes(term))
 }
 
 const Controls = styled.div({
@@ -46,7 +88,7 @@ const Controls = styled.div({
   paddingBlock: space.lg,
   borderTop: `2px solid ${color.ink}`,
   borderBottom: `1px solid ${color.ink}`,
-  [mq.md]: { gridTemplateColumns: "minmax(0, 1fr) 14rem" },
+  [mq.md]: { gridTemplateColumns: "minmax(0, 1fr) 13rem 13rem" },
 })
 
 const Field = styled.label({
@@ -61,6 +103,7 @@ const Field = styled.label({
     border: `1px solid ${color.ink}`,
     background: "#fff",
     borderRadius: 0,
+    minWidth: 0,
   },
 })
 
@@ -110,6 +153,15 @@ const Clear = styled.button({
   padding: 0,
 })
 
+const NoResult = styled.div({
+  display: "grid",
+  gap: space.sm,
+  justifyItems: "start",
+  paddingBlock: space.lg,
+  fontSize: fontSize.sm,
+  color: color.sub,
+})
+
 const Pager = styled.nav({
   display: "flex",
   justifyContent: "center",
@@ -126,6 +178,7 @@ const QueryReader = ({ onRead }: { onRead: (f: Partial<Filters>) => void }) => {
       tag: params.get("tag") ?? "",
       category: params.get("category") ?? "",
       row: params.get("row") ?? "",
+      kind: params.get("kind") ?? "",
     })
   }, [params, onRead])
   return null
@@ -180,13 +233,20 @@ export const WordsExplorer = ({
       </Suspense>
       <Controls role="search">
         <Field>
-          キーワード（表記・読み・意味）
+          キーワード（表記・読み・別表記・意味）
           <input
             type="search"
             value={filters.q}
             onChange={(e) => update({ q: e.target.value })}
-            placeholder="例：略語、ネズミ、くらうど"
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && filters.q) update({ q: "" })
+            }}
+            placeholder="例：略語、ネズミ、くらうど、Macintosh"
+            aria-describedby="search-hint"
           />
+          <span id="search-hint" className="visually-hidden">
+            入力すると結果が絞り込まれます。Escキーで入力を消去します。
+          </span>
         </Field>
         <Field>
           分類
@@ -198,6 +258,20 @@ export const WordsExplorer = ({
             {categories.map((c) => (
               <option key={c.slug} value={c.slug}>
                 {c.name}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field>
+          意味の成り立ち
+          <select
+            value={filters.kind}
+            onChange={(e) => update({ kind: e.target.value })}
+          >
+            <option value="">すべて</option>
+            {kinds.map((k) => (
+              <option key={k.value} value={k.value}>
+                {k.label}
               </option>
             ))}
           </select>
@@ -236,9 +310,28 @@ export const WordsExplorer = ({
       </Status>
 
       {visible.length === 0 ? (
-        <Empty>
-          該当する言葉が見つかりませんでした。表記や読みを変えてお試しください。
-        </Empty>
+        <NoResult>
+          <p>
+            該当する言葉が見つかりませんでした。表記や読み（ひらがな）を変えてお試しください。
+          </p>
+          {active && (
+            <Clear type="button" onClick={() => update(emptyFilters)}>
+              条件をクリアして全件を表示
+            </Clear>
+          )}
+          <p>分類から探す：</p>
+          <LabelRow>
+            {categories.map((c) => (
+              <li key={c.slug}>
+                <CategoryLabel {...c} />
+              </li>
+            ))}
+          </LabelRow>
+          <p>
+            <Link href="/categories/">分類の一覧</Link>／
+            <Link href="/words/">すべての言葉</Link>
+          </p>
+        </NoResult>
       ) : (
         visible.map((w) => <WordCard key={w.slug} word={w} />)
       )}

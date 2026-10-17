@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
+import type { ReactNode } from "react"
 import { ArticleLayout } from "@/components/ArticleLayout"
 import { Breadcrumbs } from "@/components/Breadcrumbs"
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd"
@@ -9,10 +11,16 @@ import {
   getArticles,
   getCategories,
   getSources,
+  getWord,
   getWords,
 } from "@/lib/data"
 import { absoluteUrl, site } from "@/lib/site"
-import { toArticleSummary } from "@/lib/views"
+import {
+  nextArticles,
+  senseNote,
+  toArticleSummary,
+  toRelatedItem,
+} from "@/lib/views"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -66,6 +74,29 @@ const Page = async ({ params }: Props) => {
     )
   }
 
+  // 本文中の <WordLink slug="..."> を辞典ページへのリンクにする（slug は pnpm validate で検査）
+  const WordLink = ({
+    slug,
+    children,
+  }: {
+    slug: string
+    children: ReactNode
+  }) =>
+    getWord(slug) ? <Link href={`/words/${slug}/`}>{children}</Link> : children
+
+  const featured = getWords(article.word_ids)
+  const related = getWords([
+    ...new Set(featured.flatMap((w) => w.related_word_ids)),
+  ])
+    .filter((w) => !article.word_ids.includes(w.id))
+    .map((w) => {
+      const from = featured.find((f) => f.related_word_ids.includes(w.id))!
+      return toRelatedItem(
+        w,
+        `「${from.written_form}」の関連語。意味：${senseNote(w)}`
+      )
+    })
+
   return (
     <Container>
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
@@ -73,6 +104,7 @@ const Page = async ({ params }: Props) => {
         data={{
           "@context": "https://schema.org",
           "@type": "Article",
+          mainEntityOfPage: absoluteUrl(path),
           headline: article.title,
           description: article.dek,
           url: absoluteUrl(path),
@@ -99,9 +131,7 @@ const Page = async ({ params }: Props) => {
         dek={article.dek}
         publishedAt={article.published_at}
         updatedAt={article.updated_at}
-        words={getWords(article.word_ids).map(
-          ({ slug, written_form, reading }) => ({ slug, written_form, reading })
-        )}
+        words={featured.map((w) => toRelatedItem(w, senseNote(w)))}
         categories={getCategories(article.category_ids).map(
           ({ slug, name }) => ({
             slug,
@@ -109,12 +139,10 @@ const Page = async ({ params }: Props) => {
           })
         )}
         sources={sources}
-        others={getArticles()
-          .filter((a) => a.id !== article.id)
-          .slice(0, 3)
-          .map(toArticleSummary)}
+        related={related}
+        next={nextArticles(article).map(toArticleSummary)}
       >
-        <Body components={{ Ref }} />
+        <Body components={{ Ref, WordLink }} />
       </ArticleLayout>
     </Container>
   )

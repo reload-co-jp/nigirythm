@@ -6,17 +6,25 @@ import { WordEntry } from "@/components/WordEntry"
 import { Container } from "@/components/ui"
 import {
   certaintyLabel,
+  getArticles,
   getArticlesByIds,
   getCategories,
+  getRelations,
   getSenses,
   getWord,
   getWords,
   getWordSources,
+  relationTypeLabel,
   relationshipLabel,
   words,
 } from "@/lib/data"
 import { absoluteUrl, site } from "@/lib/site"
-import { toArticleSummary } from "@/lib/views"
+import {
+  relatedNote,
+  sameCategoryWords,
+  toArticleSummary,
+  toRelatedItem,
+} from "@/lib/views"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -30,12 +38,20 @@ export const generateMetadata = async ({
   const word = getWord((await params).slug)
   if (!word) return {}
   const labels = getSenses(word.id).map((s) => s.label)
-  const title = `${word.written_form}の意味と由来｜${labels.slice(0, 2).join("・")}`
+  // 仮名の見出し語は読みと同じになるため、英字・漢字の見出し語だけ読みを添える
+  const kana = /^[\p{scx=Hiragana}\p{scx=Katakana}ー]+$/u.test(
+    word.written_form
+  )
+  const head = kana
+    ? word.written_form
+    : `${word.written_form}（${word.reading}）`
+  const title = `${head}の意味と由来｜${labels.slice(0, 2).join("・")}`
+  const description = `「${word.written_form}」の${labels.length}つの意味（${labels.join("、")}）と由来を出典付きで解説。${word.summary}`
   return {
     title,
-    description: word.summary,
+    description,
     alternates: { canonical: `/words/${word.slug}/` },
-    openGraph: { type: "article", title, description: word.summary },
+    openGraph: { type: "article", title, description },
   }
 }
 
@@ -46,6 +62,9 @@ const Page = async ({ params }: Props) => {
   const sources = getWordSources(word.id)
   const number = new Map(sources.map((s, i) => [s.id, i + 1]))
   const senses = getSenses(word.id)
+  const refs = (ids: string[]) =>
+    ids.map((id) => ({ id, n: number.get(id) ?? 0 }))
+  const articles = getArticles()
   const path = `/words/${word.slug}/`
   const crumbs = [
     { name: "言葉", path: "/words/" },
@@ -102,12 +121,26 @@ const Page = async ({ params }: Props) => {
           unrelated: s.relationship_type === "unrelated",
           certainty: s.certainty,
           certaintyText: certaintyLabel[s.certainty],
-          refs: s.source_ids.map((id) => ({ id, n: number.get(id) ?? 0 })),
+          refs: refs(s.source_ids),
+          articles: articles
+            .filter((a) => a.sense_ids.includes(s.id))
+            .map(({ slug, title }) => ({ slug, title })),
         }))}
         sources={sources}
-        related={getWords(word.related_word_ids).map(
-          ({ slug, written_form, reading }) => ({ slug, written_form, reading })
+        relations={getRelations(word.id).map((r) => ({
+          from: r.from,
+          to: r.to,
+          type: r.type,
+          typeText: relationTypeLabel[r.type],
+          description: r.description,
+          certainty: r.certainty,
+          certaintyText: certaintyLabel[r.certainty],
+          refs: refs(r.source_ids),
+        }))}
+        related={getWords(word.related_word_ids).map((w) =>
+          toRelatedItem(w, relatedNote(word, w))
         )}
+        sameCategory={sameCategoryWords(word)}
         articles={getArticlesByIds(word.article_ids).map(toArticleSummary)}
       />
     </Container>
