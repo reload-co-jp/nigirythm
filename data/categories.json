@@ -1,0 +1,50 @@
+[
+  {
+    "id": "abbreviation",
+    "slug": "abbreviation",
+    "name": "略語の衝突",
+    "description": "別々の語句の頭文字や短縮形が、たまたま同じ形に行き着いたもの。PRやマックのように、文脈が変わると指すものがまるごと入れ替わる。"
+  },
+  {
+    "id": "metaphor",
+    "slug": "metaphor",
+    "name": "比喩・メタファー",
+    "description": "形や働きが似ていることから、既存の言葉が新しいものの名前に転用されたもの。マウス、ウインドウ、クラウドなど、コンピューター用語に特に多い。"
+  },
+  {
+    "id": "coincidence",
+    "slug": "coincidence",
+    "name": "偶然の一致",
+    "description": "音や表記が同じでも、由来に歴史的なつながりが確認できないもの。似ているからといって関係があるとは限らない。"
+  },
+  {
+    "id": "loanword",
+    "slug": "loanword",
+    "name": "借用語・外来語",
+    "description": "他の言語から取り入れられた言葉。借用元の言語や、借用されたあとの意味のずれに注目する。"
+  },
+  {
+    "id": "proper-noun",
+    "slug": "proper-noun",
+    "name": "固有名詞・ブランド名",
+    "description": "商品名、社名、作品名などの固有名詞が、一般の言葉と同じ形になったもの、あるいは一般語に転じたもの。"
+  },
+  {
+    "id": "jargon",
+    "slug": "jargon",
+    "name": "専門用語の転用",
+    "description": "ある分野の専門用語が、別の分野で新しい意味を与えられたもの。生物学のウイルスや、OSの用語だったクッキーなど。"
+  },
+  {
+    "id": "semantic-change",
+    "slug": "semantic-change",
+    "name": "意味の変化",
+    "description": "時代とともに意味の中心が移ったり、評価が反転したりした言葉。"
+  },
+  {
+    "id": "disputed",
+    "slug": "disputed",
+    "name": "語源諸説・未解明",
+    "description": "由来について複数の説があるもの、俗説が広まっているもの、確かな根拠が見つかっていないもの。"
+  }
+]

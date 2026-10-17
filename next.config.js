@@ -1,12 +1,16 @@
+import createMDX from "@next/mdx"
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
   output: "export",
-  basePath: process.env.NODE_ENV === "production" ? "/page" : "",
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
+  compiler: {
+    emotion: true,
+  },
 }
 
-export default nextConfig
+export default createMDX({})(nextConfig)
