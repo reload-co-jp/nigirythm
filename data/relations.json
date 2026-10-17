@@ -126,5 +126,93 @@
     "description": "言語名はコメディ番組「Monty Python's Flying Circus」に由来し、蛇から名付けたものではない。",
     "source_ids": ["kb-python", "python-faq"],
     "certainty": "confirmed"
+  },
+  {
+    "from": "pan-bread",
+    "to": "pan-camera",
+    "type": "coincidence",
+    "description": "食べ物のパンはポルトガル語 pão、撮影技法のパンは英語 pan から来ており、借用元の言語が異なる。",
+    "source_ids": ["kb-pan"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "pan-bread",
+    "to": "pan-cookware",
+    "type": "coincidence",
+    "description": "「フライパン」のパンは英語 pan で、食べ物のパン（ポルトガル語 pão）とは別の語。",
+    "source_ids": ["kb-pan"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "pan-cookware",
+    "to": "pan-camera",
+    "type": "coincidence",
+    "description": "どちらも英語 pan だが、鍋の pan と、panorama を短くした動詞の pan は英語の中でも別語源とされる。",
+    "source_ids": ["kb-pan", "wikt-pan"],
+    "certainty": "probable"
+  },
+  {
+    "from": "bus-vehicle",
+    "to": "bus-bath",
+    "type": "coincidence",
+    "description": "乗り物のバスは英語 bus（omnibus の略）、浴室のバスは英語 bath。日本語に取り入れられて同じ「バス」になった。",
+    "source_ids": ["kb-bus"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "bus-vehicle",
+    "to": "bus-bass",
+    "type": "coincidence",
+    "description": "低音部のバスはドイツ語 Bass などから来ており、乗り物の bus とは別の語。",
+    "source_ids": ["kb-bus"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "light-light",
+    "to": "light-right",
+    "type": "coincidence",
+    "description": "英語の l と r の区別が日本語のカタカナ表記では失われ、light と right が同じ「ライト」になった。",
+    "source_ids": ["kb-light"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "coat-coat",
+    "to": "coat-court",
+    "type": "coincidence",
+    "description": "英語では coat と court は綴りも発音も異なるが、カタカナではどちらも「コート」になる。",
+    "source_ids": ["kb-coat"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "sheet-seat",
+    "to": "sheet-sheet",
+    "type": "coincidence",
+    "description": "英語では seat と sheet は綴りも発音も異なるが、カタカナではどちらも「シート」になる。",
+    "source_ids": ["kb-sheet"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "lead-lead",
+    "to": "lead-reed",
+    "type": "coincidence",
+    "description": "英語の l と r の区別が日本語のカタカナ表記では失われ、lead と reed が同じ「リード」になった。",
+    "source_ids": ["kb-lead"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "knight-night",
+    "to": "knight-knight",
+    "type": "coincidence",
+    "description": "knight の k は発音しないため、英語でも night と同音。綴りの違う別の語が同じ「ナイト」になった。",
+    "source_ids": ["kb-knight"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "router-tool",
+    "to": "router-network",
+    "type": "coincidence",
+    "description": "国語辞典は一つの見出し「ルーター（router）」に両方の意味を載せるが、英語では木工具は rout（えぐる）、通信機器は route（経路）からの派生とされ、綴りが一致したのは偶然。",
+    "source_ids": ["kb-router", "wikt-router"],
+    "certainty": "probable"
   }
 ]
