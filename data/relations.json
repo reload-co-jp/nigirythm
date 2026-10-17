@@ -214,5 +214,53 @@
     "description": "国語辞典は一つの見出し「ルーター（router）」に両方の意味を載せるが、英語では木工具は rout（えぐる）、通信機器は route（経路）からの派生とされ、綴りが一致したのは偶然。",
     "source_ids": ["kb-router", "wikt-router"],
     "certainty": "probable"
+  },
+  {
+    "from": "pin-pin",
+    "to": "pin-pinta",
+    "type": "coincidence",
+    "description": "留め針のピンは英語 pin、さいころの目の一を表すピンはポルトガル語 pinta（点）から来ており、借用元の言語が異なる。",
+    "source_ids": ["kb-pin"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "cock-kok",
+    "to": "cock-cock",
+    "type": "coincidence",
+    "description": "料理人のコックはオランダ語 kok、栓のコックは英語 cock から来ており、借用元の言語が異なる。",
+    "source_ids": ["kb-cock"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "hose-hoos",
+    "to": "hose-horse",
+    "type": "coincidence",
+    "description": "管のホースはオランダ語 hoos、馬のホースは英語 horse から来ており、借用元の言語が異なる。",
+    "source_ids": ["kb-hose"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "mesu-female",
+    "to": "mesu-scalpel",
+    "type": "coincidence",
+    "description": "動物のメスは日本語の「めす」、手術用のメスはオランダ語 mes。もとからあった日本語と外来語がたまたま同音になった。",
+    "source_ids": ["kb-female", "kb-mesu"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "mast-mast",
+    "to": "mast-must",
+    "type": "coincidence",
+    "description": "帆柱のマストはオランダ語・英語 mast、「マストアイテム」のマストは英語の助動詞 must。英語でも綴り・発音とも別の語。",
+    "source_ids": ["kb-mast"],
+    "certainty": "confirmed"
+  },
+  {
+    "from": "hai-yes",
+    "to": "hai-high",
+    "type": "coincidence",
+    "description": "応答の「はい」は日本語の感動詞、「ハイな気分」のハイは英語 high から来ており、同音になったのは偶然。",
+    "source_ids": ["kb-hai"],
+    "certainty": "confirmed"
   }
 ]
