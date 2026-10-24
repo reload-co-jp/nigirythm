@@ -749,5 +749,20 @@
     "article_ids": [],
     "created_at": "2026-10-18",
     "updated_at": "2026-10-18"
+  },
+  {
+    "id": "tendon",
+    "slug": "tendon",
+    "status": "published",
+    "written_form": "天丼",
+    "reading": "てんどん",
+    "aliases": ["tendon", "天ぷら丼"],
+    "summary": "てんぷらをのせた丼飯と、同じギャグやボケを繰り返すお笑いの手法。料理名が芸人の符丁に転用されたもので、呼び名の由来には諸説ある。ローマ字の tendon は、筋肉と骨をつなぐ「腱」を表す英語 tendon と綴りが一致するが、無関係。",
+    "category_ids": ["jargon", "metaphor", "coincidence", "disputed"],
+    "tags": ["料理", "お笑い", "業界用語", "日本語", "英語", "医学"],
+    "related_word_ids": [],
+    "article_ids": [],
+    "created_at": "2026-10-24",
+    "updated_at": "2026-10-24"
   }
 ]

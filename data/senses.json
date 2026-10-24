@@ -908,5 +908,47 @@
     "relationship_type": "unrelated",
     "certainty": "confirmed",
     "source_ids": ["kb-hai"]
+  },
+  {
+    "id": "tendon-food",
+    "word_id": "tendon",
+    "label": "天丼（料理）",
+    "meaning": "どんぶり飯にてんぷらをのせ、濃いめのつゆ・たれをかけたもの。",
+    "field": "日常語・飲食",
+    "origin": "「てんぷら丼（天麩羅丼）」の略。",
+    "origin_language": "日本語",
+    "first_attestation": "精選版 日本国語大辞典は『東京風俗志』（1899〜1902）を用例に挙げる。",
+    "popularization_history": "",
+    "relationship_type": "origin",
+    "certainty": "confirmed",
+    "source_ids": ["kb-tendon"]
+  },
+  {
+    "id": "tendon-comedy",
+    "word_id": "tendon",
+    "label": "天丼（お笑い）",
+    "meaning": "同じギャグやボケを二度、三度と繰り返して笑いを取る手法。",
+    "field": "映画・テレビ",
+    "origin": "料理の天丼からの転用。海老天丼には海老が二本のることが多く「同じネタが二つ並ぶ」からとする説が広く知られるが、出前の天丼が来ないと繰り返すネタが元とする説、エノケン一座のコントの手法に由来するとする説などもあり、定説はない。",
+    "origin_language": "日本語",
+    "first_attestation": "",
+    "popularization_history": "",
+    "relationship_type": "jargon-transfer",
+    "certainty": "disputed",
+    "source_ids": ["nicodic-tendon"]
+  },
+  {
+    "id": "tendon-sinew",
+    "word_id": "tendon",
+    "label": "tendon（腱）",
+    "meaning": "筋肉を骨に結びつけ、筋肉の力を骨に伝える丈夫な結合組織。腱。英語ではプレストレストコンクリートの緊張材（PC鋼材）もいう。",
+    "field": "医学",
+    "origin": "フランス語 tendon または中世ラテン語 tendo から。古代ギリシア語 τένων（腱）が、ラテン語の動詞 tendo（伸ばす）との連想で形を変えたもの。日本語の天丼とは無関係で、ローマ字表記が一致したのは偶然。",
+    "origin_language": "英語",
+    "first_attestation": "",
+    "popularization_history": "",
+    "relationship_type": "unrelated",
+    "certainty": "confirmed",
+    "source_ids": ["wikt-tendon"]
   }
 ]

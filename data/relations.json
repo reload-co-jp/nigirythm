@@ -262,5 +262,21 @@
     "description": "応答の「はい」は日本語の感動詞、「ハイな気分」のハイは英語 high から来ており、同音になったのは偶然。",
     "source_ids": ["kb-hai"],
     "certainty": "confirmed"
+  },
+  {
+    "from": "tendon-food",
+    "to": "tendon-comedy",
+    "type": "jargon-transfer",
+    "description": "料理名がお笑いの符丁に転用された。海老が二本並ぶ見た目を「同じネタの繰り返し」に見立てたとする説が一般的だが、ほかにも諸説ある。",
+    "source_ids": ["nicodic-tendon"],
+    "certainty": "disputed"
+  },
+  {
+    "from": "tendon-food",
+    "to": "tendon-sinew",
+    "type": "coincidence",
+    "description": "天丼のローマ字表記 tendon は、英語の tendon（腱）と綴りが一致する。英語は古代ギリシア語 τένων に由来し、天丼は日本語「てんぷら丼」の略。英語圏では料理の tendon も日本語からの借用として同じ綴りで辞書に載る。",
+    "source_ids": ["wikt-tendon", "kb-tendon"],
+    "certainty": "confirmed"
   }
 ]
